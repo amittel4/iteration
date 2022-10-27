@@ -1,0 +1,43 @@
+---
+title: "iteration"
+author: "Aaron Mittel"
+date: "2022-10-27"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(rvest)
+set.seed(1)
+```
+
+## Z-scores!
+
+Let's compute the z-score version of a list of numbers.
+
+```{r}
+x_vec = rnorm(25, mean = 7, sd = 4)
+
+(x_vec - mean(x_vec)) / sd(x_vec)
+```
+
+Suppose you want to do this often.
+
+```{r}
+z_scores = function(x) {
+  
+  z = (x - mean(x)) / sd(x)
+  
+  z
+}
+```
+
+```{r}
+z_scores(x = x_vec)
+
+z_scores(x = 1:10)
+z_scores(x = rbinom(1000, 1, 0.6))
+z_scores(x = 3)
+```
+
